@@ -1097,7 +1097,22 @@ class Blueprint
 
         $this->timestamp('updated_at', $precision)->nullable();
     }
+     /**
+     * Add nullable creation and update timestamps to the table.
+     *
+     * @param  int  $precision
+     * @return void
+     */
+    public function timestampsWithSoftDeletes($precision = 0, $softDeletesColumn = 'deleted_at', $softDeletesPrecision = 0)
+    {
+        $this->timestamp('created_at', $precision)->nullable();
 
+        $this->timestamp('updated_at', $precision)->nullable();
+        
+        $this->timestamp($softDeletesColumn, $softDeletesPrecision)->nullable();
+    }
+    
+    
     /**
      * Add nullable creation and update timestamps to the table.
      *
